@@ -41,6 +41,7 @@ export class AuthenticationService {
   login(context: LoginContext): Observable<Credentials> {
     return this.auth.validateUser(context.username, context.password)
       .pipe(map(res => {
+        console.log('login result: ');
         console.log(res);
         const data = {
           username: context.username,

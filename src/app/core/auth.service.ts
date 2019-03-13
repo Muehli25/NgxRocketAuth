@@ -10,7 +10,7 @@ export class AuthService {
       'username': username,
       'password': password
     };
-
+    console.log(userdata);
     return this.http.post<Credentials>('/login', userdata);
   }
 }

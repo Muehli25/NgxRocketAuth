@@ -1,20 +1,29 @@
 var express = require('express');
+var bodyParser     =        require("body-parser");
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
 app.post('/login', function (req, res) {
-  console.log(req.body);
+  console.log("Login");
+  console.log(req.headers);
   res.json({
-    username: req.username,
-    token: Buffer.from(req.username + ":" + req.password).toString('base64')
+    username: req.body.username,
+    token: Buffer.from(req.body.username + ":" + req.body.password).toString('base64')
   });
 });
 
 app.get('/jokes401', function (req, res) {
-  res.sendStatus(401);
+  console.log("Jokes 401");
+  console.log(req.headers);
+  res.json({
+    value: "bad Joke"
+  })
 });
 
 app.get('/jokes', function (req, res) {

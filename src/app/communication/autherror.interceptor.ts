@@ -18,10 +18,10 @@ export class AuthErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (localStorage.getItem('jwtToken')) {
+    if (localStorage.getItem('credentials')) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ` + localStorage.getItem('jwtToken')
+          Authorization: localStorage.getItem('credentials')
         }
       });
     }
